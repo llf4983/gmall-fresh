@@ -11,6 +11,11 @@ import java.util.List;
 
 public class CanalClient {
 
+/*
+这是dang-h的修改测试
+ */
+
+
 
     public static void main(String[] args) {
         //建立连接器

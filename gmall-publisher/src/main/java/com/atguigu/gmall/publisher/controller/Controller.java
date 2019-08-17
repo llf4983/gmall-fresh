@@ -24,6 +24,7 @@ public class Controller {
         List<Map> list=new ArrayList<>();
         Map map=new HashMap();
         Map map2=new HashMap();
+        Map map3=new HashMap();
         Long total = publish.getTotal(date);
         map.put("id","dau");
         map.put("name","新增日活");
@@ -32,8 +33,14 @@ public class Controller {
         map2.put("id","new_mid");
         map2.put("name","新增设备");
         map2.put("value",233);
+
+        map3.put("id","order_amount");
+        map3.put("name","交易额");
+        map3.put("value",publish.orderTotal(date));
         list.add(map);
         list.add(map2);
+        list.add(map3);
+
         return JSON.toJSONString(list);
     }
 
@@ -50,6 +57,14 @@ public class Controller {
             stringStringHashMap.put("yesterday",yesterday);
             return JSON.toJSONString(stringStringHashMap);
 
+        }else if("order_amount".equals(id)){
+            Map<String, Double> today = publish.orderHour(date);
+            String yest = transformDate(date);
+            Map<String, Double> yesterday = publish.orderHour(yest);
+            Map hashMap = new HashMap();
+            hashMap.put("yesterday",yesterday);
+            hashMap.put("today",today);
+            return JSON.toJSONString(hashMap);
         }else{
 
         }

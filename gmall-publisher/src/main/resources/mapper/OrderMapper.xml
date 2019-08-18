@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.gmall.publisher.dao.Order" >
+    <select id="getTol" resultType="java.lang.Double">
+        select sum(TOTAL_AMOUNT) TOTAL_AMOUNT from gmall2019_order_info
+    </select>
+    <select id="getHou" resultMap="hourBean">
+        select CREATE_HOUR,sum(TOTAL_AMOUNT) TOTAL_AMOUNT from gmall2019_order_info GROUP BY CREATE_HOUR
+    </select>
+
+    <resultMap id="hourBean" type="com.atguigu.gmall.publisher.bean.HourBean" autoMapping="true">
+        <result column="TOTAL_AMOUNT" property="amount"></result>
+    </resultMap>
+</mapper>

@@ -8,4 +8,6 @@ public interface Publish {
 
     public Double orderTotal(String date);
     public Map<String,Double> orderHour(String date);
+
+    public Map getES(String date,String keywords,int pageNo,int pageSize);
 }
